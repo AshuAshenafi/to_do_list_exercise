@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>list</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/69e5f61610.js" crossorigin="anonymous"></script>
+    <style>
+        .div-bor div {
+            /*border: 1px solid maroon;*/
+        }
+
+        .jumbotron {
+            /*padding-bottom: 1%;*/
+            /*padding-top: 5%;*/
+            background-image: url("images/alarm.jpg");
+        }
+
+        .text-center {
+
+            width: 250px;
+            margin-left: 15%;
+
+            /*margin-right: 20%;*/
+        }
+        .wrapper div{
+            text-align: center;
+        }
+        .a1{
+            border-right: 1px solid maroon;
+            border-top: 2px solid maroon;
+            border-bottom: 2px solid maroon;
+        }
+        .a2{
+            border-right: 1px solid maroon;
+            border-left: 2px solid maroon;
+            border-top: 2px solid maroon;
+            border-bottom: 2px solid maroon;
+        }
+        .a3{
+            border-top: 2px solid maroon;
+            border-bottom: 2px solid maroon;
+
+        }
+        .a4{
+            border-top: 2px solid maroon;
+            border-bottom: 2px solid maroon;
+            border-right: 2px solid maroon;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <form class="container-action" action="#" th:action="@{/add}">
+        <div class="jumbotron col-md-6 justify-content-center offset-3">
+            <h2>My To Do List</h2>
+
+            <p class="lead">Please enter what has to be done. Do not procrastinate!</p>
+            <hr class="my-4">
+            <p>Press the button below to ADD!</p>
+            <br/>
+            <div class="text-center">
+                <input class="text-center" type="submit" value="+ADD"/>
+            </div>
+
+        </div>
+
+        <br/>
+
+            <div class="row">
+                <div class="a2 col-md-1 d-flex justify-content-center">
+                    img url
+                </div>
+                <div class="a1 col-md-1 d-flex justify-content-center">
+                    id
+                </div>
+                <div class="a1 col-md-1 d-flex justify-content-center">
+                    priority
+                </div>
+                <div class="a1 col-md-1 d-flex justify-content-center">
+                    completed?
+                </div>
+                <div class="a1 col-md-5 d-flex justify-content-center">
+                    name
+                </div>
+                <div class="a1 col-md-1 d-flex justify-content-center">
+                    date
+                </div>
+                <div class="a3 col-md-1 d-flex justify-content-center">
+                    put
+                </div>
+                <div class="a4 col-md-1 d-flex justify-content-center">
+                    del
+                </div>
+            </div>
+
+        <hr/>
+        <div class="container-form" th:each="todo: ${todos}">
+            <form>
+                <div class="div-bor">
+                    <div class="row">
+                        <div id="img-col" class="col-md-1">
+                            [[${todo.picture}]]
+                        </div>
+
+                        <div id="id-col" class="col-md-1">
+                            [[${todo.id}]]
+                        </div>
+
+                        <div id="prio-col" class="col-md-1">
+                            [[${todo.priority}]]
+                        </div>
+
+                        <div id="comp-col" class="col-md-1">
+<!--                            [[${todo.isCompleted}]]-->
+<!--                            <input type="checkbox" name="isCompleted" th:checked="${isCompleted}"/>-->
+                            <input type="hidden" name="_isCompleted" th:value="${todo.isCompleted}"/>
+                            <input type="checkbox" name="isCompleted" th:checked="${todo.isCompleted}"/>
+                        </div>
+
+                        <div id="name-col" class="col-md-5">
+                            [[${todo.name}]]
+                        </div>
+                        <div id="date-col" class="col-md-1">
+                            [[${todo.date}]]
+                        </div>
+
+                        <div id="option-col" class="col-md-2">
+                            <div class="wrapper">
+                                <div class="row">
+                                    <div class="col-md-6" style="display: inline-block;">
+                                        | <a th:href="@{/update/{id}(id=${todo.id})}">
+                                        <!--                            update-->
+                                        <i class="far fa-edit" style="color: darkgreen" th:alt="edit"></i>
+                                    </a>|
+                                    </div>
+                                    <div class="col-md-6">|
+                                        <a th:href="@{/delete/{id}(id=${todo.id})}">
+                                            <!--                                Delete-->
+                                            <i class="fas fa-trash" style="color: brown"></i>
+                                        </a> |
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                </div>
+            </form>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

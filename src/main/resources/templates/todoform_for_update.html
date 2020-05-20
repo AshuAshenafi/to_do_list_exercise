@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>form_update</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+
+        .div-bor div {
+            /*border: 1px solid maroon;*/
+        }
+        .row{
+            /*align-items: d-flex justify-content-center;*/
+        }
+        .jumbotron{
+            padding-bottom: 1%;
+            padding-top: 3%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron col-md-6 justify-content-center offset-3">
+        <h2 >My To Do List</h2>
+
+        <p class="lead">Please enter what has to be done.</p>
+        <hr class="my-4">
+        <p>No procrastination!</p>
+    </div>
+
+    <form action="#" th:action="@{/update_process/{id}(id=${todo.id})}" th:object="${todo}" method="post">
+        <div class="div-bor">
+
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Name:
+                        </div>
+                        <div id="name-col" class="col-md-9">
+                            <input id="name-id" class="col-md-12" type="text" th:field="*{name}"/>
+                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+
+            <div class="row d-flex justify-content-center">
+
+                <div id="comp-and-prior-col" class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="name-id">Is Completed? </label>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="checkbox" th:field="*{isCompleted}"/>
+<!--                            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>-->
+                        </div>
+                        <div class="col-md-2">
+                            <label for="name-id"> </label>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="name-id">Priority </label>
+                        </div>
+                        <div class="col-md-4">
+                            <input id="prior-id1" class="col-md-12" type="text" th:field="*{priority}"/>
+                            <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row d-flex justify-content-center">
+
+                <div id="date-col" class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="img-id">Due Date: </label>
+                        </div>
+                        <div class="col-md-9">
+                            <input id="date-id" class="col-md-12" type="text" th:field="*{date}"/>
+                            <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row d-flex justify-content-center">
+
+                <div id="img-col" class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="img-id">Image url: </label>
+                        </div>
+
+                        <div class="col-md-9">
+                            <input id="img-id" class="col-md-12" type="text" th:field="*{picture}"/>
+                            <span th:if="${#fields.hasErrors('picture')}" th:errors="*{picture}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <div class="row d-flex justify-content-center">
+
+                <div id="name-desc" class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="img-id">Description: </label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea rows="3" id="desc-id" class="col-md-12" type="text" th:field="*{description}"/>
+                            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <div class="text-center"><input type="submit" value="UPDATE!"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
