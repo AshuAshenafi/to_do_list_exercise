@@ -41,6 +41,9 @@
                             Name:
                         </div>
                         <div id="name-col" class="col-md-9">
+
+
+
                             <input id="name-id" class="col-md-12" type="text" th:field="*{name}"/>
                             <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                         </div>
@@ -64,12 +67,25 @@
                         <div class="col-md-2">
                             <label for="name-id"> </label>
                         </div>
-                        <div class="col-md-2">
-                            <label for="name-id">Priority </label>
-                        </div>
-                        <div class="col-md-4">
-                            <input id="prior-id1" class="col-md-12" type="text" th:field="*{priority}"/>
-                            <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span>
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <label class="input-group-text" for="select01">Priority</label>
+                                </div>
+                                <select th:field="*{priority}" class="custom-select"  id="select01">
+                                    <option value="" selected></option>
+                                    <option th:value="CRITICAL">Critical</option>
+                                    <option th:value="HIGH">High</option>
+                                    <option th:value="MODERATE">Moderate</option>
+                                    <option th:value="LOW">Low</option>
+                                </select>
+
+                            </div>
+<!--                            <label for="name-id">Priority </label>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-4">-->
+<!--                            <input id="prior-id1" class="col-md-12" type="text" th:field="*{priority}"/>-->
+<!--                            <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span>-->
                         </div>
 
                     </div>
@@ -85,7 +101,7 @@
                             <label for="img-id">Due Date: </label>
                         </div>
                         <div class="col-md-9">
-                            <input id="date-id" class="col-md-12" type="text" th:field="*{date}"/>
+                            <input id="date-id" class="col-md-12" type="date" th:field="*{date}"/>
                             <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
                         </div>
                     </div>

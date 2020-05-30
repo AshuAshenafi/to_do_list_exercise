@@ -89,12 +89,10 @@
                 <div class="a1 col-md-1 d-flex justify-content-center">
                     date
                 </div>
-                <div class="a3 col-md-1 d-flex justify-content-center">
-                    put
+                <div class="a3 col-md-2 d-flex justify-content-center" style="padding: 0%">
+                    update-detail-delete
                 </div>
-                <div class="a4 col-md-1 d-flex justify-content-center">
-                    del
-                </div>
+
             </div>
 
         <hr/>
@@ -106,15 +104,15 @@
                             [[${todo.picture}]]
                         </div>
 
-                        <div id="id-col" class="col-md-1">
+                        <div id="id-col" class="col-md-1" style="padding: 0%; text-align: center">
                             [[${todo.id}]]
                         </div>
 
-                        <div id="prio-col" class="col-md-1">
+                        <div id="prio-col" class="col-md-1" style="padding: 0%; text-align: center">
                             [[${todo.priority}]]
                         </div>
 
-                        <div id="comp-col" class="col-md-1">
+                        <div id="comp-col" class="col-md-1" style="padding: 0%; text-align: center">
 <!--                            [[${todo.isCompleted}]]-->
 <!--                            <input type="checkbox" name="isCompleted" th:checked="${isCompleted}"/>-->
                             <input type="hidden" name="_isCompleted" th:value="${todo.isCompleted}"/>
@@ -128,16 +126,22 @@
                             [[${todo.date}]]
                         </div>
 
+
                         <div id="option-col" class="col-md-2">
                             <div class="wrapper">
-                                <div class="row">
-                                    <div class="col-md-6" style="display: inline-block;">
+                                <div class="row" style="padding: 0%">
+                                    <div class="col-md-4" style="display: inline-block;">
                                         | <a th:href="@{/update/{id}(id=${todo.id})}">
                                         <!--                            update-->
                                         <i class="far fa-edit" style="color: darkgreen" th:alt="edit"></i>
                                     </a>|
                                     </div>
-                                    <div class="col-md-6">|
+
+                                    <div class="col-md-4">
+                                        <a href="#">DETAIL</a>
+                                    </div>
+
+                                    <div class="col-md-4">|
                                         <a th:href="@{/delete/{id}(id=${todo.id})}">
                                             <!--                                Delete-->
                                             <i class="fas fa-trash" style="color: brown"></i>

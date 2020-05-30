@@ -10,34 +10,61 @@
 
 
 <div class="container">
-    <h1>To Do Form</h1>
-    <form action="#" th:action="@{/process}" th:object="${todo}" method="post">
-        <input type="hidden" th:field="*{id}"/>
-
-        Task Name : <input type="text" th:field="*{name}"/>
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-        <br/>
+    <div class="jumbotron col-md-6 justify-content-center offset-3">
+        <h2>To Do Form</h2>
         <hr/>
+        <form action="#" th:action="@{/process}" th:object="${toDo}" method="post">
+            <input type="hidden" th:field="*{id}"/>
 
-        Due Date : <input type="date" th:field="*{date}"/>
-        <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
-        <br/>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Task Name </label>
+                <input type="text" th:field="*{name}" class="form-control" id="exampleInputEmail1"
+                       aria-describedby="emailHelp" placeholder="Task Name here">
+                <small id="emailHelp" class="form-text text-muted">Do not worry! we will remind You!</small>
+            </div>
 
-        Priority : <input type="text" th:field="*{priority}"/>
-        <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span>
-        <br/>
+            <hr/>
+            <div class="form-check">
+                <input type="checkbox" th:field="*{isCompleted}" class="form-check-input" id="materialUnchecked">
+                <label class="form-check-label" for="materialUnchecked">Task Completed?</label>
+                <span th:if="${#fields.hasErrors('isCompleted')}" th:errors="*{isCompleted}"></span>
+            </div>
 
-        Description : <input type="text" th:field="*{description}"/>
-        <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-        <br/>
+            <hr/>
+            Due Date : <input type="date" th:field="*{date}"/>
+            <span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></span>
 
-        <input type="submit" value="Submit"/>
-    </form>
+            <hr/>
+            <div class="input-group mb-3">
+                <div class="input-group-append">
+                    <label class="input-group-text" for="select01">Priority</label>
+                </div>
+                <select th:field="${toDo.priority}" class="custom-select" id="select01">
+                    <option value="" selected></option>
+                    <option th:value="CRITICAL">Critical</option>
+                    <option th:value="HIGH">High</option>
+                    <option th:value="MODERATE">Moderate</option>
+                    <option th:value="LOW">Low</option>
+                </select>
+                <span th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span>
+            </div>
+
+            <hr/>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Description</label>
+                <textarea th:field="*{description}" class="form-control" id="exampleFormControlTextarea1"
+                          rows="3"></textarea>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </div>
+
+            <hr/>
+            <div class="text-center">
+                <input class="text-center" type="submit" value="Submit"/>
+            </div>
+<!--            <input type="submit" value="Submit"/>-->
+        </form>
+    </div>
 </div>
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

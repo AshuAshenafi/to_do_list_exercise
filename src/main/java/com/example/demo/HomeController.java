@@ -23,18 +23,18 @@ public class HomeController {
 
     @GetMapping("/add")
     public String loadToDoForm(Model model) {
-        model.addAttribute("todo", new ToDo());
+        model.addAttribute("toDo", new ToDo());
         return "todoform";
     }
 
     @PostMapping("/process")
-    public String loadFromToDoPage(@Valid ToDo todo, BindingResult result) {
+    public String loadFromToDoPage(@Valid ToDo toDo, BindingResult result) {
         if (result.hasErrors()) {
             return "todoform";
         }
 //        int idx = toDoService.getsize() + 1;
-        todo.setId(toDoService.generateTaskId());
-        toDoService.addRecord(todo);
+        toDo.setId(toDoService.generateTaskId());
+        toDoService.addRecord(toDo);
         return "redirect:/";
     }
 
