@@ -1,11 +1,17 @@
 package com.example.demo;
 
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+//import static com.example.demo.ToDoListApplication.id_for_task;
+
 @Service
 public class ToDoService {
+    public static int id_for_task;
+
+
     ArrayList<ToDo> todolist = new ArrayList<>();
 
     public void addRecord(ToDo todo) {
@@ -46,6 +52,11 @@ public class ToDoService {
     }
     public ArrayList<ToDo> loader() {
         return todolist;
+    }
+    public int generateTaskId() {
+//        int id = toDo.varValueForTaskId();
+        id_for_task += 1;
+        return id_for_task;
     }
 
 }

@@ -10,13 +10,14 @@ import javax.validation.Valid;
 
 @Controller
 public class HomeController {
+
     @Autowired
-    ToDoService todolists;
+    ToDoService toDoService;
 
 
     @RequestMapping("/")
     public String todoLists(Model model) {
-        model.addAttribute("todos", todolists.loader());
+        model.addAttribute("todos", toDoService.loader());
         return "list";
     }
 
@@ -31,15 +32,15 @@ public class HomeController {
         if (result.hasErrors()) {
             return "todoform";
         }
-        int idx = todolists.getsize() + 1;
-        todo.setId(idx);
-        todolists.addRecord(todo);
+//        int idx = toDoService.getsize() + 1;
+        todo.setId(toDoService.generateTaskId());
+        toDoService.addRecord(todo);
         return "redirect:/";
     }
 
     @RequestMapping("/update/{id}")
     public String updateToDo(@PathVariable("id") int id, Model model) {
-        model.addAttribute("todo", todolists.findById(id));
+        model.addAttribute("todo", toDoService.findById(id));
 
         return "todoform_for_update";
     }
@@ -51,13 +52,13 @@ public class HomeController {
             return "todoform";
         }
         todo.setId(id);
-        todolists.replaceRecord(todo);
+        toDoService.replaceRecord(todo);
         return "redirect:/";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteToDo(@PathVariable("id") int id) {
-        todolists.deleteById(id);
+        toDoService.deleteById(id);
         return "redirect:/";
     }
 }

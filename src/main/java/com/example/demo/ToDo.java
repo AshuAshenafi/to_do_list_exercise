@@ -1,11 +1,15 @@
 package com.example.demo;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 
 public class ToDo {
+
     private int id;
 
     @NotNull
@@ -16,11 +20,12 @@ public class ToDo {
     @Size(min=3)
     private String description;
 
-    @NotNull
-    private int priority;
+
+    private String priority;
 
     @NotNull
-    private String date;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME, pattern = "yyyy-MM-dd")
+    private LocalDate date;
 
 
     private String picture;
@@ -36,8 +41,8 @@ public class ToDo {
         return id;
     }
 
-    public ToDo(int id, String name, String description, int priority, String date, String picture, boolean isCompleted) {
-//    public ToDo(int id, String name, String description, int priority, String date, String picture, boolean isCompleted) {
+    public ToDo(int id, @NotNull @Size(min = 3) String name, @NotNull @Size(min = 3) String description,
+                String priority, @NotNull LocalDate date, String picture, boolean isCompleted) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -67,19 +72,19 @@ public class ToDo {
         this.description = description;
     }
 
-    public int getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(int priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -99,4 +104,5 @@ public class ToDo {
     public void setIsCompleted(boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
+
 }
