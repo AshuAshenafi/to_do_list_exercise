@@ -81,7 +81,7 @@
                     priority
                 </div>
                 <div class="a1 col-md-1 d-flex justify-content-center">
-                    completed?
+                    status
                 </div>
                 <div class="a1 col-md-5 d-flex justify-content-center">
                     name
@@ -89,8 +89,11 @@
                 <div class="a1 col-md-1 d-flex justify-content-center">
                     date
                 </div>
-                <div class="a3 col-md-2 d-flex justify-content-center" style="padding: 0%">
-                    update-detail-delete
+                <div class="a3 col-md-1 d-flex justify-content-center" style="padding: 0%">
+                    update
+                </div>
+                <div class="a4 col-md-1 d-flex justify-content-center" style="padding: 0%">
+                    delete
                 </div>
 
             </div>
@@ -101,7 +104,8 @@
                 <div class="div-bor">
                     <div class="row">
                         <div id="img-col" class="col-md-1">
-                            [[${todo.picture}]]
+<!--                            [[${todo.picture}]]-->
+                            <img th:name="pic" th:src="${todo.picture}" style="width:50px;height:50px;" alt="prfile-pic">
                         </div>
 
                         <div id="id-col" class="col-md-1" style="padding: 0%; text-align: center">
@@ -130,18 +134,18 @@
                         <div id="option-col" class="col-md-2">
                             <div class="wrapper">
                                 <div class="row" style="padding: 0%">
-                                    <div class="col-md-4" style="display: inline-block;">
+                                    <div class="col-md-6" style="display: inline-block;">
                                         | <a th:href="@{/update/{id}(id=${todo.id})}">
                                         <!--                            update-->
                                         <i class="far fa-edit" style="color: darkgreen" th:alt="edit"></i>
                                     </a>|
                                     </div>
 
-                                    <div class="col-md-4">
-                                        <a href="#">DETAIL</a>
-                                    </div>
+<!--                                    <div class="col-md-4">-->
+<!--                                        <a href="#">DETAIL</a>-->
+<!--                                    </div>-->
 
-                                    <div class="col-md-4">|
+                                    <div class="col-md-6">|
                                         <a th:href="@{/delete/{id}(id=${todo.id})}">
                                             <!--                                Delete-->
                                             <i class="fas fa-trash" style="color: brown"></i>

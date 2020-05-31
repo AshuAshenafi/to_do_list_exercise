@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 
@@ -34,6 +35,7 @@ public class HomeController {
         }
 //        int idx = toDoService.getsize() + 1;
         toDo.setId(toDoService.generateTaskId());
+
         toDoService.addRecord(toDo);
         return "redirect:/";
     }
